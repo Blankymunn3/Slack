@@ -36,17 +36,15 @@ public class Post extends AppCompatActivity {
         //RequestQueue에 MainActivity에서 받아온 context값 전달
         RequestQueue queue = Volley.newRequestQueue(context);
 
-
-        /* TODO POST SLACK URL TOKE */
         String url =  "https://hooks.slack.com/services/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";
 
         //JsonObject에 필요한 값들 put
         JSONObject jsonParam = new JSONObject();
         try {
             jsonParam.put("username", getSMSName);
+            jsonParam.put("icon_emoji",":credit_card:");
             jsonParam.put("attachments", "");
             jsonParam.put("color", "#36a64f");
-            jsonParam.put("icon_emoji",":wiggle_cat:");
             jsonParam.put("pretext",formatDate);
             jsonParam.put("text",getSMSText);
 
@@ -63,7 +61,7 @@ public class Post extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+                Log.d("Error",error.toString());
             }
         });
 
