@@ -36,6 +36,7 @@ public class Post extends AppCompatActivity {
         //RequestQueue에 MainActivity에서 받아온 context값 전달
         RequestQueue queue = Volley.newRequestQueue(context);
 
+        //Slack #Office-report 채널 Token 정보
         String url =  "https://hooks.slack.com/services/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";
 
         //JsonObject에 필요한 값들 put
@@ -49,7 +50,7 @@ public class Post extends AppCompatActivity {
             jsonParam.put("text",getSMSText);
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e("Error",e.toString());
         }
 
         //

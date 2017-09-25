@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
 
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
         if(permissionCheck == PackageManager.PERMISSION_GRANTED){
-            Log.d("문자 수신 권한 ", "있음");
+            Log.i("문자 수신 권한 ", "있음");
         } else {
-            Log.d("문자 수신 권한 ", "없음");
+            Log.i("문자 수신 권한 ", "없음");
             if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.RECEIVE_SMS)){
-                Log.d("문자 권한 설정 ", "필요");
+                Log.i("문자 권한 설정 ", "필요");
             } else {
                 // 권한이 할당되지 않았으면 해당 권한을 요청
                 ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.RECEIVE_SMS},1);
@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             for (int i = 0; i < permissions.length; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    Log.d("문자 수신 권한", "승인");
+                    Log.i("문자 수신 권한", "승인");
                 } else {
-                    Log.d("문자 수신 권한", "거부");
+                    Log.i("문자 수신 권한", "거부");
                 }
             }
         }
