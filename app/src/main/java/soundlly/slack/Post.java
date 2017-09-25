@@ -56,12 +56,12 @@ public class Post extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonParam, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.d("Response: ", response.toString());
+                Log.i("Response: ", response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error",error.toString());
+                Log.e("Error",error.toString());
             }
         });
 

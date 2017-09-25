@@ -17,19 +17,19 @@ public class Broadcastreceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Bundle bundle = intent.getExtras();
-        if(bundle != null){
-            Object[] pdus = (Object[])bundle.get("pdus");
 
-            SmsMessage[] msgs = new SmsMessage[pdus.length];
-            for(int i = 0 ; i < msgs.length ; i++){
-                msgs[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-                senderNUM = msgs[i].getOriginatingAddress();
-                message = msgs[i].getMessageBody();
+            Bundle bundle = intent.getExtras();
+            if (bundle != null) {
+                Object[] pdus = (Object[]) bundle.get("pdus");
+
+                SmsMessage[] msgs = new SmsMessage[pdus.length];
+                for (int i = 0; i < msgs.length; i++) {
+                    msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                    senderNUM = msgs[i].getOriginatingAddress();
+                    message = msgs[i].getMessageBody();
+                }
+
+                Post.post(senderNUM, message, context);
             }
-
-            Post.post(senderNUM,message,context);
         }
     }
-
-}
