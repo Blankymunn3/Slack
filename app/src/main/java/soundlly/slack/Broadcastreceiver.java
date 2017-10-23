@@ -9,8 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
-public class Broadcastreceiver extends BroadcastReceiver {
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+public class Broadcastreceiver extends BroadcastReceiver{
     protected String message;
     protected String senderNUM;
 
@@ -29,7 +34,13 @@ public class Broadcastreceiver extends BroadcastReceiver {
                     message = msgs[i].getMessageBody();
                 }
 
-                Post.post(senderNUM, message, context);
+                Post post = new Post();
+                try {
+                    Post.post(senderNUM,message);
+                } catch (IOException e){
+                    Log.e("", e.toString());
+                }
+
             }
         }
     }
